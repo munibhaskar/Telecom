@@ -2,7 +2,7 @@
 FROM openjdk:8-jdk-alpine
 
 # Add Maintainer Info
-MAINTAINER munibhaskar <munibhaskar59@gmail.com>
+LABEL maintainer="munibhaskar59@gmail.com"
 
 # Add a volume pointing to /tmp
 VOLUME /tmp
@@ -11,8 +11,10 @@ VOLUME /tmp
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE=target\telecom-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/telecom-0.0.1-SNAPSHOT.jar
+
+# Add the application's jar to the container
+ADD ${JAR_FILE} telecom-0.0.1-SNAPSHOT.jar
 
 # Run the jar file 
-ENTRYPOINT ["java","-jar","C:\/training\/telecom\/target\/telecom-0.0.1-SNAPSHOT.jar"]
-
+ENTRYPOINT ["java","-jar","/telecom-0.0.1-SNAPSHOT.jar"]
